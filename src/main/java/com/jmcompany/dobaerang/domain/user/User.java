@@ -1,9 +1,12 @@
 package com.jmcompany.dobaerang.domain.user;
 
+import com.jmcompany.dobaerang.domain.role.Role;
 import com.jmcompany.dobaerang.global.listener.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -19,6 +22,7 @@ public class User extends BaseEntity {
     private Long id;
 
     @NonNull
+    @Column(unique = true)
     private String username;
 
     @NonNull
@@ -26,5 +30,14 @@ public class User extends BaseEntity {
 
     @NonNull
     private boolean enabled;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    @ToString.Exclude
+    private List<Role> roles = new ArrayList<>();
 
 }

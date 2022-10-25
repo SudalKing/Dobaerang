@@ -5,29 +5,34 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
+import javax.persistence.EntityManager;
 
 @SpringBootTest
-class UserRepositoryTest {
+class UserServiceTest {
 
     @Autowired
     private UserRepository userRepository;
 
-    @DisplayName(value = "User Domain Test")
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private EntityManager entityManager;
+
+    @DisplayName(value = "UserService save Test")
     @Test
-    void user(){
+    void saveServiceTest(){
+
+        User user = new User();
+        user.setUsername("admin");
+        user.setPassword("0000");
+        userService.adminSave(user);
+
         User user1 = new User();
         user1.setUsername("user1");
         user1.setPassword("1111");
-        user1.setEnabled(true);
-        userRepository.save(user1);
+        userService.userSave(user1);
 
-        userRepository.findAll().forEach(System.out::println);
-    }
-
-    @DisplayName(value = "User_Role Test")
-    @Test
-    void user_role(){
         userRepository.findAll().forEach(System.out::println);
     }
 
