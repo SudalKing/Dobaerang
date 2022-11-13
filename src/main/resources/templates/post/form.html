@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+
+<!--Navbar Top Header-->
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow" th:replace="fragments/common-header"></header>
+<!--------------------->
+
+<div class="container-fluid">
+    <div class="row">
+
+        <!--Navbar Side-->
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse" th:replace="fragments/common-side">
+        </nav>
+        <!-------------->
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Posting</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group me-2">
+                        <a type="button" class="btn btn-sm btn-outline-secondary" th:href="@{/post/form}">글쓰기</a>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                        <span data-feather="calendar" class="align-text-bottom"></span>
+                        This week
+                    </button>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <form method="post" th:action="@{/post/form}" th:object="${post}">
+                    <input type="hidden" th:field="*{id}">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">제목</label>
+                        <input type="text" class="form-control" id="title" th:field="*{title}"
+                               th:classappend="${#fields.hasErrors('title')}? 'is-invalid'">
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">
+                            제목 에러 메세지
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="content" class="form-label">내용</label>
+                        <textarea class="form-control" id="content" rows="3" th:field="*{content}"
+                                  th:classappend="${#fields.hasErrors('content')}? 'is-invalid'">내용</textarea>
+                    </div>
+                    <div class="invalid-feedback" th:if="${#fields.hasErrors('content')}" th:errors="*{content}">
+                        내용 에러 메세지
+                    </div>
+                    <div class="text-end">
+                        <a type="button" class="btn btn-outline-primary" th:href="@{/post/list}">취소</a>
+                        <button type="submit" class="btn btn-outline-primary">확인</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+
+
+    </div>
+</div>
+
+
+
+<script th:src="@{/js/bootstrap.js}"></script>
+</body>
+</html>

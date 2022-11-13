@@ -1,5 +1,8 @@
 package com.jmcompany.dobaerang.domain.user;
 
+import com.jmcompany.dobaerang.domain.user.model.User;
+import com.jmcompany.dobaerang.domain.user.repository.UserRepository;
+import com.jmcompany.dobaerang.domain.user.service.UserService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

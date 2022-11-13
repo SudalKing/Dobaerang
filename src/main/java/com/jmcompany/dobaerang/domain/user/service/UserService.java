@@ -1,6 +1,8 @@
-package com.jmcompany.dobaerang.domain.user;
+package com.jmcompany.dobaerang.domain.user.service;
 
 import com.jmcompany.dobaerang.domain.role.Role;
+import com.jmcompany.dobaerang.domain.user.model.User;
+import com.jmcompany.dobaerang.domain.user.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

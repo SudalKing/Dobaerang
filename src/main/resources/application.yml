@@ -23,5 +23,10 @@ spring:
       enabled: true
     restart:
       enabled: true
-
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+server:
+  port: 8070
 

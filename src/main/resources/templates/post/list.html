@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Post</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/post.css}">
+</head>
+<body>
+
+<!--Navbar Top Header-->
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow" th:replace="fragments/common-header"></header>
+<!--------------------->
+
+<div class="container-fluid">
+    <div class="row">
+
+        <!--Navbar Side-->
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse" th:replace="fragments/common-side">
+        </nav>
+        <!-------------->
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Posting</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group me-2">
+                        <a type="button" class="btn btn-sm btn-outline-secondary" th:href="@{/post/form}">글쓰기</a>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                        <span data-feather="calendar" class="align-text-bottom"></span>
+                        This week
+                    </button>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-striped table-sm">
+                    <thead>
+                    <tr>
+                        <th scope="col">제목</th>
+                        <th scope="col">글쓴이</th>
+                        <th scope="col">작성일자</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="post : ${posts}">
+                        <td th:if="${post.comments.size()} &gt; 0"><a th:text="${post.title} + '[' + ${post.comments.size() + ']'}"
+                               th:href="@{/post/read(id=${post.id})}" class="text-decoration-none nav-link">제목</a>
+                        </td>
+                        <td th:unless="${post.comments.size()} &gt; 0"><a th:text="${post.title}"
+                               th:href="@{/post/read(id=${post.id})}" class="text-decoration-none nav-link">제목</a>
+                        </td>
+                        <td th:text="${post.user.username}">글쓴이</td>
+                        <td th:text="${#temporals.format(post.createdAt, 'yy-MM-dd HH:mm')}">생성시간</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</div>
+
+
+
+<script th:src="@{/js/bootstrap.js}"></script>
+</body>
+</html>

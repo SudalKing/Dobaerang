@@ -1,5 +1,7 @@
-package com.jmcompany.dobaerang.domain.user;
+package com.jmcompany.dobaerang.domain.user.controller;
 
+import com.jmcompany.dobaerang.domain.user.service.UserService;
+import com.jmcompany.dobaerang.domain.user.model.User;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

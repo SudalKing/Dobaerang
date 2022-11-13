@@ -1,6 +1,6 @@
 package com.jmcompany.dobaerang.domain.role;
 
-import com.jmcompany.dobaerang.domain.user.User;
+import com.jmcompany.dobaerang.domain.user.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
