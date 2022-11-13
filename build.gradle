@@ -33,6 +33,9 @@ dependencies {
     testImplementation 'org.springframework.security:spring-security-test'
 
     implementation group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '2.7.0'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.7.3'
+
 }
 
 tasks.named('test') {

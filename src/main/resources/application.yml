@@ -23,5 +23,6 @@ spring:
       enabled: true
     restart:
       enabled: true
-
+server:
+  port: 8070
 
