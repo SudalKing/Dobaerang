@@ -1,5 +1,6 @@
 package com.jmcompany.dobaerang.domain.user;
 
+import com.jmcompany.dobaerang.domain.post.Post;
 import com.jmcompany.dobaerang.domain.role.Role;
 import com.jmcompany.dobaerang.global.listener.BaseEntity;
 import lombok.*;
@@ -39,5 +40,8 @@ public class User extends BaseEntity {
     )
     @ToString.Exclude
     private List<Role> roles = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<Post> posts = new ArrayList<>();
 
 }

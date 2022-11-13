@@ -1,9 +1,14 @@
 package com.jmcompany.dobaerang.domain.user;
 
+import com.jmcompany.dobaerang.domain.post.Post;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -29,6 +34,27 @@ class UserRepositoryTest {
     @Test
     void user_role(){
         userRepository.findAll().forEach(System.out::println);
+    }
+
+    @DisplayName("[Find] findByUsername")
+    @Test
+    void findByUsername(){
+        String searchText = "user1";
+
+        List<Post> posts = new ArrayList<>();
+
+        Post post = Post.builder()
+                .title("사랑이의 귀여움")
+                .content("사랑이는 정말 귀엽다")
+                .build();
+
+        posts.add(post);
+
+        User user = userRepository.findByUsername(searchText);
+        user.setPosts(posts);
+        userRepository.save(user);
+
+        System.out.println(user);
     }
 
 }

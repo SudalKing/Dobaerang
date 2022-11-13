@@ -25,6 +25,10 @@
             <a href="/admin-page" class="display-5 text-center" sec:authorize="isAuthenticated()">관리자 페이지</a>
         </div>
 
+        <div class="row">
+            <a href="/post/list" class="display-5 text-center" sec:authorize="isAuthenticated()">포스팅</a>
+        </div>
+
         <div class="row" sec:authorize="isAuthenticated()">
             <form method="post" th:action="@{/logout}">
                 <button type="submit" class="btn btn-info">LogOut</button>
